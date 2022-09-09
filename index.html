@@ -9,6 +9,29 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="page-mask"></div>
+    <header>
+        <h1>Library</h1>
+    </header>
+    <button type="submit" class="add-button">Add new book</button>
+    <form action="" method="post" id="form">
+        <fieldset>
+            <label for="name">Book title</label>
+            <input type="text" name="title" id="name">
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author">
+            <label for="pages">Number of pages</label>
+            <input type="text" name="pages" id="pages">
+            <div class="radio">
+                <p class="question">Have you read it?</p>
+                <label for="yes">Yes</label>
+                <input type="radio" id="yes" value="true" name="read-status">
+                <label for="no">No</label>
+                <input type="radio" id="no" value="false" name="read-status">
+            </div>
+            <input type="submit" value="Add book">
+        </fieldset>
+    </form>
     <div id="library">
 
     </div>
