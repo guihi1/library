@@ -1,9 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EDEDE9;
+}
+
+#page-mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.6);
+    visibility: hidden;
+}
+
+header {
+    background-color: #D6CCC2;
+    text-align: center;
+    padding: 40px;
+}
+
 #library {
+    width: clamp( 500px, 1000px, 80%);
+    margin: 0 auto;
     display: grid;
+    gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .book {
     border-radius: 20px;
     background-color: #E3D5CA;
+    height: 250px;
+}
+
+form {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 400px;
+    visibility: hidden;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #F5EBE0;
+    border: none;
+}
+
+.question {
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    border-radius: 20px;
+    height: 30px;
+    width: 100px;
+}
+
+.add-button {
+    display: block;
+    margin: 20px auto;
+    border-radius: 20px;
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
 }
