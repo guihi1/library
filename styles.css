@@ -1,0 +1,9 @@
+#library {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.book {
+    border-radius: 20px;
+    background-color: #E3D5CA;
+}
