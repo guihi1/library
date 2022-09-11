@@ -11,14 +11,12 @@ function book(title, author, pages, read) {
     this.read = read;
 }
 
-book.prototype.readStatus = () => {
+book.prototype.readStatus = function() {
     if(this.read){
         this.read = false;
-        
     } else {
         this.read = true;
     }
-    console.log(this.read);
 }
 
 function addBookToLibrary(obj) {
@@ -42,8 +40,6 @@ addBookToLibrary(book7);
 console.log(myLibrary);
 displayBooks();
 
-
-
 function displayBooks() {
     while(library.firstChild){
         library.removeChild(library.lastChild);
@@ -53,17 +49,39 @@ function displayBooks() {
         div.classList.add("book");
         library.appendChild(div);
         for(const book in myLibrary[i]) {
-            if(myLibrary[i].hasOwnProperty(book)) {
+            if(book == "title") {
+                const p = document.createElement("p");
+                p.classList.add("title");
+                p.textContent = `${myLibrary[i][book]}`;
+                div.appendChild(p);
+            } else if(book == "author") {
                 const p = document.createElement("p");
                 p.textContent = `${myLibrary[i][book]}`;
                 div.appendChild(p);
-            }
+            } else if(book == "pages") {
+                const p = document.createElement("p");
+                p.textContent = `${myLibrary[i][book]} pages`;
+                div.appendChild(p);
+            } else if(book == "read"){
+                if(myLibrary[i]["read"]) {
+                const p = document.createElement("p");
+                p.textContent = "Read";
+                div.appendChild(p);
+                } else {
+                    const p = document.createElement("p");
+                    p.textContent = "Not read yet";
+                    div.appendChild(p);
+                }
+            } 
         }
         const reading = document.createElement("button");
         reading.textContent="Change read status";
         reading.classList.add("reading");
         div.appendChild(reading);
-        reading.addEventListener("click", myLibrary[i]["read"].readStatus);
+        reading.addEventListener("click", () => {
+            myLibrary[i].readStatus();
+            displayBooks();
+        });
         const remove = document.createElement("button");
         remove.textContent = "Remove"
         remove.classList.add("remove");
