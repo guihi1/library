@@ -3,11 +3,13 @@ const library = document.getElementById("library");
 const newBook = document.querySelector(".add-button");
 const form = document.getElementById("form");
 const mask = document.getElementById("page-mask");
+const select = document.querySelector(".select");
 
-function book(title, author, pages, read) {
+function book(title, author, pages, date, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.date = date;
     this.read = read;
 }
 
@@ -23,19 +25,19 @@ function addBookToLibrary(obj) {
     myLibrary.push(obj);
 }
 
-const book1 = new book("hobbit", "JJR", "1", true);
+const book1 = new book("hobbit", "JJR", "1452", "1904", true);
 addBookToLibrary(book1);
-const book2 = new book("hofds", "JJR", "2", false);
+const book2 = new book("hofds", "JJR", "243", "2001", false);
 addBookToLibrary(book2);
-const book3 = new book("dfsft", "JJR", "3", true);
+const book3 = new book("dfsft", "JJR", "373", "1989",true);
 addBookToLibrary(book3);
-const book4 = new book("fdsfs", "JJR", "4", false);
+const book4 = new book("fdsfs", "JJR", "467547", "2022", false);
 addBookToLibrary(book4);
-const book5 = new book("fdsfsdf", "JJR", "5", true);
+const book5 = new book("fdsfsdf", "JJR", "524", "1789", true);
 addBookToLibrary(book5);
-const book6 = new book("fsdfsd", "JJR", "6", false);
+const book6 = new book("fsdfsd", "JJR", "652", "2007", false);
 addBookToLibrary(book6);
-const book7 = new book("hfdsf", "JJR", "7", true);
+const book7 = new book("hfdsf", "JJR", "7524", "1999", true);
 addBookToLibrary(book7);
 console.log(myLibrary);
 displayBooks();
@@ -58,15 +60,19 @@ function displayBooks() {
                 const p = document.createElement("p");
                 p.textContent = `${myLibrary[i][book]}`;
                 div.appendChild(p);
+            } else if(book == "date") {
+                const p = document.createElement("p");
+                p.textContent = `Publication date: ${myLibrary[i][book]}`;
+                div.appendChild(p);
             } else if(book == "pages") {
                 const p = document.createElement("p");
                 p.textContent = `${myLibrary[i][book]} pages`;
                 div.appendChild(p);
             } else if(book == "read"){
                 if(myLibrary[i]["read"]) {
-                const p = document.createElement("p");
-                p.textContent = "Read";
-                div.appendChild(p);
+                    const p = document.createElement("p");
+                    p.textContent = "Read";
+                    div.appendChild(p);
                 } else {
                     const p = document.createElement("p");
                     p.textContent = "Not read yet";
@@ -96,4 +102,14 @@ function displayBooks() {
 newBook.addEventListener("click", () => {
     mask.style.visibility = "visible";
     form.style.visibility = "visible";
+});
+
+select.addEventListener("click", () => {
+    let val = document.querySelector(".select").value;
+    if(val == "pages") {
+        myLibrary.sort((a, b) => Number(a.pages) > Number(b.pages) ? 1 : -1);
+    } else if(val == "date") {
+        myLibrary.sort((a, b) => Number(a.date) > Number(b.date) ? 1 : -1);
+    }
+    displayBooks()
 });
