@@ -4,6 +4,7 @@ const newBook = document.querySelector(".add-button");
 const form = document.getElementById("form");
 const mask = document.getElementById("page-mask");
 const select = document.querySelector(".select");
+const addButton = document.getElementById("add-book");
 
 function book(title, author, pages, date, read) {
     this.title = title;
@@ -12,6 +13,20 @@ function book(title, author, pages, date, read) {
     this.date = date;
     this.read = read;
 }
+
+addButton.addEventListener("click", () => {
+    let title = document.getElementById("name").value;
+    let author = document.getElementById("author").value;
+    let year = document.getElementById("date").value;
+    let pages = document.getElementById("pages").value;
+    let read = document.querySelector('input[name="read-status"]:checked').value;
+    let isTrue = (read === "true");
+    const newBook = new book(title, author, pages, year, isTrue);
+    mask.style.visibility = "hidden";
+    form.style.visibility = "hidden";
+    addBookToLibrary(newBook);
+    displayBooks();
+});
 
 book.prototype.readStatus = function() {
     if(this.read){
@@ -31,15 +46,6 @@ const book2 = new book("hofds", "JJR", "243", "2001", false);
 addBookToLibrary(book2);
 const book3 = new book("dfsft", "JJR", "373", "1989",true);
 addBookToLibrary(book3);
-const book4 = new book("fdsfs", "JJR", "467547", "2022", false);
-addBookToLibrary(book4);
-const book5 = new book("fdsfsdf", "JJR", "524", "1789", true);
-addBookToLibrary(book5);
-const book6 = new book("fsdfsd", "JJR", "652", "2007", false);
-addBookToLibrary(book6);
-const book7 = new book("hfdsf", "JJR", "7524", "1999", true);
-addBookToLibrary(book7);
-console.log(myLibrary);
 displayBooks();
 
 function displayBooks() {
