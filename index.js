@@ -6,12 +6,24 @@ const mask = document.getElementById("page-mask");
 const select = document.querySelector(".select");
 const addButton = document.getElementById("add-book");
 
-function book(title, author, pages, date, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.date = date;
-    this.read = read;
+class book {
+    constructor(title, author, pages, date, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.date = date;
+        this.read = read;
+    }
+    readStatus = () => {
+        if(this.read){
+            this.read = false;
+        } else {
+            this.read = true;
+        }
+    }
+    addBookToLibrary = () => {
+        myLibrary.push(this);
+    }
 }
 
 addButton.addEventListener("click", () => {
@@ -24,28 +36,16 @@ addButton.addEventListener("click", () => {
     const newBook = new book(title, author, pages, year, isTrue);
     mask.style.visibility = "hidden";
     form.style.visibility = "hidden";
-    addBookToLibrary(newBook);
+    newBook.addBookToLibrary();
     displayBooks();
 });
 
-book.prototype.readStatus = function() {
-    if(this.read){
-        this.read = false;
-    } else {
-        this.read = true;
-    }
-}
-
-function addBookToLibrary(obj) {
-    myLibrary.push(obj);
-}
-
-const book1 = new book("hobbit", "JJR", "1452", "1904", true);
-addBookToLibrary(book1);
-const book2 = new book("hofds", "JJR", "243", "2001", false);
-addBookToLibrary(book2);
-const book3 = new book("dfsft", "JJR", "373", "1989",true);
-addBookToLibrary(book3);
+const book1 = new book("The Hobbit", "J. R. R. Tolkien", "310", "1937", true);
+book1.addBookToLibrary();
+const book2 = new book("Dom Casmurro", "Machado de Assis", "210", "1900", false);
+book2.addBookToLibrary();
+const book3 = new book("A Hora da Estrela", "Clarice Lispector", "87", "1977",true);
+book3.addBookToLibrary();
 displayBooks();
 
 function displayBooks() {
