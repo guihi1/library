@@ -38,6 +38,16 @@ addButton.addEventListener("click", () => {
     form.style.visibility = "hidden";
     newBook.addBookToLibrary();
     displayBooks();
+    document.getElementById("name").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("date").value = "";
+    document.getElementById("pages").value = "";
+    let elements = document.getElementsByTagName("input");
+    for (let i = 0; i < elements.length; i++) {
+            if (elements[i].type == "radio") {
+                elements[i].checked = false;
+            }
+        }
 });
 
 const book1 = new book("The Hobbit", "J. R. R. Tolkien", "310", "1937", true);
