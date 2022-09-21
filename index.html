@@ -23,16 +23,16 @@
     </select>
     <form action="" method="post" id="form">
         <fieldset>
-            <label for="name">Book title</label>
-            <input type="text" name="title" id="name">
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author">
-            <label for="date">Publication date</label>
-            <input type="text" name="date" id="date">
-            <label for="pages">Number of pages</label>
-            <input type="text" name="pages" id="pages">
-            <div class="radio">
-                <p class="question">Have you read it?</p>
+            <label for="name">Book title *</label>
+            <input type="text" name="title" id="name" required>
+            <label for="author">Author *</label>
+            <input type="text" name="author" id="author" required>
+            <label for="date">Publication date *</label>
+            <input type="text" name="date" id="date" required>
+            <label for="pages">Number of pages *</label>
+            <input type="text" name="pages" id="pages" required>
+            <div class="radio" required>
+                <p class="question">Have you read it? *</p>
                 <label for="yes">Yes</label>
                 <input type="radio" id="yes" value="true" name="read-status">
                 <label for="no">No</label>
